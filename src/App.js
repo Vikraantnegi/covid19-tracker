@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      Hi
+      <h1>Let's build covid19 tracker boiss</h1>
     </div>
   );
 }
