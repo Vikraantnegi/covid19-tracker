@@ -5,7 +5,7 @@ import {Card, CardContent, Typography} from '@material-ui/core';
 
 const FeatureBox = (props) => {
     return(
-        <Card className="mh-20">
+        <Card className="m-20">
             <CardContent>
                 <Typography className="feature-title" color="textSecondary">
                     {props.title}

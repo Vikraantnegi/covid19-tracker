@@ -8,39 +8,50 @@ import Map from './components/Map/Map';
 function App() {
   const [countries, setcountries] = useState([]);
   const [country, setcountry] = useState('WoW');
+  const [countryInfo, setcountryInfo] = useState([]);
 
   useEffect(() => {
     const getCountryData = async () => {
       await fetch('https://disease.sh/v3/covid-19/countries')
         .then(response => response.json())
-        .then(data => {
-          const countries = data.map(country => ({
-            name: country.country,
-            code: country.countryInfo.iso3,
-            // flag: country.countryInfo.flag,
-            // totalcases: country.cases,
-            // newcases: country.todayCases,
-            // totalrecovered: country.recovered,
-            // newrecovered: country.todayRecovered,
-            // totaldeaths: country.deaths,
-            // newdeaths: country.todayDeaths,
-            // active: country.active,
-            // critical: country.critical,
-          }))
-          setcountries(countries);
-        })
+          .then(data => {
+            const countries = data.map(country => ({
+              name: country.country,
+              code: country.countryInfo.iso3,
+            }))
+            setcountries(countries);
+          })
         .catch(error => console.log(error));
     };
     getCountryData();
-
   }, []);
 
-  const DropdownChange = (e) => {
-    setcountry(e.target.value);
+  const DropdownChange = async(e) => {
+    const api = e.target.value === 'WoW' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${country}`;
+    await fetch(api)
+      .then(response => response.json())
+        .then(data => {
+          const countryInfo = data.map(country => ({
+            name: country.country,
+            code: country.countryInfo.iso3,
+            flag: country.countryInfo.flag,
+            totalcases: country.cases,
+            newcases: country.todayCases,
+            totalrecovered: country.recovered,
+            newrecovered: country.todayRecovered,
+            totaldeaths: country.deaths,
+            newdeaths: country.todayDeaths,
+            active: country.active,
+            critical: country.critical,
+          }))
+          setcountry(countryInfo.code);
+          setcountryInfo(countryInfo);
+        })
+      .catch(error => console.log(error));
   }
 
   return (
-    <div className="App flexRow flexEvenly flexAlignCenter mw1100">
+    <div className="covid-app flexRow flexEvenly flexAlignCenter mw1100">
       <div className="stats-left">
         <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
           <h1>Covid-19 Tracker</h1>
@@ -48,7 +59,7 @@ function App() {
             <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
               <MenuItem value="WoW">WorldWide</MenuItem>
               {countries.map(country => (
-                <MenuItem value={country.code}>{country.name}</MenuItem>
+                <MenuItem key={country.code} value={country.code}>{country.name}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -68,7 +79,7 @@ function App() {
       </div>
       <Card className="stats-right">
         <CardContent className="flexColumn flexBetween">
-          <h3 className="live-cases">Live Cases WorldWide</h3>
+          <h3 className="live-cases">Live Cases by Country</h3>
           <h3 className="fresh-cases">New Cases WorldWide</h3>
         </CardContent>
       </Card>
