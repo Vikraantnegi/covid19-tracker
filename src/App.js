@@ -5,6 +5,7 @@ import {Card, CardContent, FormControl, MenuItem, Select} from '@material-ui/cor
 import FeatureBox from './components/FeatureBox/FeatureBox';
 import Map from './components/Map/Map';
 import Table from './components/Table/Table';
+import Graph from './components/Graph/Graph';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -97,6 +98,7 @@ function App() {
           <h3 className="live-cases">Live Cases by Country</h3>
           <Table countries={table} />
           <h3 className="fresh-cases">New Cases WorldWide</h3>
+          <Graph />
         </CardContent>
       </Card>
     </div>
