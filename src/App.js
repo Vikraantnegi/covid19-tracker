@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/HelperStyles.css';
-import {FormControl, MenuItem, Select} from '@material-ui/core';
+import {Card, CardContent, FormControl, MenuItem, Select} from '@material-ui/core';
 import FeatureBox from './components/FeatureBox/FeatureBox';
+import Map from './components/Map/Map';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -39,24 +40,38 @@ function App() {
   }
 
   return (
-    <div className="App mw1100">
-      <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
-        <h1>Covid-19 Tracker</h1>
-        <FormControl className="country-dropdown">
-          <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
-            <MenuItem value="WoW">WorldWide</MenuItem>
-            {countries.map(country => (
-              <MenuItem value={country.code}>{country.name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+    <div className="App flexRow flexEvenly flexAlignCenter mw1100">
+      <div className="stats-left">
+        <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
+          <h1>Covid-19 Tracker</h1>
+          <FormControl className="country-dropdown">
+            <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
+              <MenuItem value="WoW">WorldWide</MenuItem>
+              {countries.map(country => (
+                <MenuItem value={country.code}>{country.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="covid-total flexRow flexEnd mb-20">
+          <h1 className="total-cases mr-20">132456</h1>
+          <h4 className="new-cases flexColumn flexCenter mr-20"> +2879 </h4>
+        </div>
+        <div className="covid-stats flexRow flexBetween flexAlignCenter mb-20">
+          <FeatureBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
+          <FeatureBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
+          <FeatureBox title="Total Covid Deaths" freshCases={200} totalCases={12345} />
+        </div>
+        <div className="covid-map">
+          <Map />
+        </div>
       </div>
-      <div className="covid-stats flexRow flexBetween flexAlignCenter mb-20">
-        <FeatureBox title="Total Covid Cases" freshCases={2879} totalCases={132456} />
-        <FeatureBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
-        <FeatureBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
-        <FeatureBox title="Total Covid Deaths" freshCases={200} totalCases={12345} />
-      </div>
+      <Card className="stats-right">
+        <CardContent className="flexColumn flexBetween">
+          <h3 className="live-cases">Live Cases WorldWide</h3>
+          <h3 className="fresh-cases">New Cases WorldWide</h3>
+        </CardContent>
+      </Card>
     </div>
   );
 }
