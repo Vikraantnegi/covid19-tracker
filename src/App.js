@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/HelperStyles.css';
 import {FormControl, MenuItem, Select} from '@material-ui/core';
-import OptionBox from './components/OptionBox/OptionBox';
+import FeatureBox from './components/FeatureBox/FeatureBox';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -52,10 +52,10 @@ function App() {
         </FormControl>
       </div>
       <div className="covid-options flexRow flexBetween flexAlignCenter mb-20">
-        <OptionBox title="Total Cases" freshCases={2879} totalCases={132456} />
-        <OptionBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
-        <OptionBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
-        <OptionBox title="Total Deaths" freshCases={200} totalCases={12345} />
+        <FeatureBox title="Total Cases" freshCases={2879} totalCases={132456} />
+        <FeatureBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
+        <FeatureBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
+        <FeatureBox title="Total Deaths" freshCases={200} totalCases={12345} />
       </div>
     </div>
   );
