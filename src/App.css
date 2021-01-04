@@ -1,5 +1,6 @@
 body{
     background-color: #f5f6fa;
+    margin: 20px;
 }
 .stats-left{
     flex: 0.9;

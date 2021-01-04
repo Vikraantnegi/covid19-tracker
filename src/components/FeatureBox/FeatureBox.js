@@ -11,13 +11,13 @@ const FeatureBox = (props) => {
                     {props.title}
                 </Typography>
 
-                <h2 className="feature-freshCases">
-                    + {props.freshCases} cases
-                </h2>
-
                 <Typography className="feature-totalCases" color="textSecondary">
                     {props.totalCases}
                 </Typography>
+
+                <h2 className="feature-freshCases">
+                    + {props.freshCases} cases
+                </h2>
             </CardContent>
         </Card>
     );
