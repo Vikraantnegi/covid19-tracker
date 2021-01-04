@@ -29,36 +29,14 @@
     margin-right: 80px;
 }
 .w100{width: 100%;}
-.header button{
-    font-family: 'Poppins', sans-serif;
-    color: black !important;
-}
-.header button:focus{
-    border: none !important;
-}
-.google-button{
-    background-color: rgba(143,210,248,1) !important;
-    box-shadow: none !important;
-    border-radius: 10px !important;
-}
-.google-logo{
-    background-color: rgba(143,210,248,1) !important;
-    border-radius: 10px !important;
-}
-.edit-your-portfolio{
-    background-color: rgba(242,212,146,1);
-    border-radius: 2px !important;
-    font-size: 14px;
-    color: black;
-    border: none !important;
-    padding: 10px 29px !important;
-    font-family: 'Poppins', sans-serif;
-}
 .bold{
     font-weight: 700;
 }
 .ml-20{
     margin-left: 20px;
+}
+.mr-20{
+    margin-right: 20px;
 }
 .mt-50{margin-top: 50px;}
 .mb-20{margin-bottom: 20px;}
@@ -94,103 +72,12 @@
 .flexEnd{
     justify-content: flex-end;
 }
-.modal-head{
-    font: 32px 'Poppins', sans-serif;
-    font-weight: 500;
-    margin: 0;
-}
-.modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: none !important;
-    border-radius: 32px !important;
-    outline: 0;
-    padding: 40px;
-}
-.modal-button{
-    background-color: #00E5D8;
-    border-radius: 8px;
-    border: none;
-    padding: 10px 30px;
-    font: 18px 'Poppins', sans-serif;
-    font-weight: 500;
-}
-.modal-button:hover{
-    background-color: inherit;
-    color: #00E5D8;
-    border: 3px solid #00E5D8;
-    padding: 7px 27px;
-}
-.upload-button{
-    background: #FFFFFF;
-    border: 1px solid #282828;
-    box-sizing: border-box;
-    border-radius: 8px;
-    padding: 10px 30px;
-    font: 18px 'Poppins', sans-serif;
-    font-weight: 500;
-}
-.upload-button:hover{
-    color: black;
-}
-.modal .form-group .form-label{
-    font: 20px 'Poppins', sans-serif;
-    font-weight: 400;
-    color: #3D3D3D;
-}
-.modal .form-group input{
-    background: #F4F4F4;
-    border: 1px solid #C9C9C9;
-    box-sizing: border-box;
-    border-radius: 32px;
-    font: 20px 'Poppins', sans-serif;
-    font-weight: 400;
-    color: #8D8D8D;
-    outline: none;
-    box-shadow: none !important;
-    padding: 20px;
-}
-.modal .form-group input:focus{
-    background: #FFFFFF;
-    border: 1px solid #00E6D8;
-    box-sizing: border-box;
-    border-radius: 32px;
-    font: 20px 'Poppins', sans-serif;
-    font-weight: 400;
-    color: #514C4C;
-    outline: none !important;
-    box-shadow: none !important;
-}
-.modal button{
-    background-color: inherit;
-    border: none;
-    outline: none;
-}
 .dividerBottom{
     border-bottom: 1px solid #000000;
 }
-.card11 .hidden{
-    display: none;
+.mb-25{
+    margin-bottom: 25px;
 }
-.card11 .option{
-    background-color: white;
-    padding: 5px 10px;
-    border-radius: 8px;
-    box-shadow: 1px 0px 7px rgba(155, 155, 155, 0.25);
-}
-.card11 .options-text{
-    font: 16px 'Poppins', sans-serif;
-    font-weight: 400;
-    color: black;
-}
-.modal a{
-    cursor: pointer !important;
-}
-.edit-your-portfolio:focus{
-    outline: none;
+.flexEvenly{
+    justify-content: space-evenly;
 }
