@@ -39,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App mw1100">
       <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
         <h1>Covid-19 Tracker</h1>
         <FormControl className="country-dropdown">
@@ -51,11 +51,11 @@ function App() {
           </Select>
         </FormControl>
       </div>
-      <div className="covid-options flexRow flexBetween flexAlignCenter mb-20">
-        <FeatureBox title="Total Cases" freshCases={2879} totalCases={132456} />
+      <div className="covid-stats flexRow flexBetween flexAlignCenter mb-20">
+        <FeatureBox title="Total Covid Cases" freshCases={2879} totalCases={132456} />
         <FeatureBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
         <FeatureBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
-        <FeatureBox title="Total Deaths" freshCases={200} totalCases={12345} />
+        <FeatureBox title="Total Covid Deaths" freshCases={200} totalCases={12345} />
       </div>
     </div>
   );
