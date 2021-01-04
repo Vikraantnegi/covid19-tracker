@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/HelperStyles.css';
-import {FormControl, MenuItem, Select} from '@material-ui/core'
+import {FormControl, MenuItem, Select} from '@material-ui/core';
+import OptionBox from './components/OptionBox/OptionBox';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -33,8 +34,8 @@ function App() {
 
   }, []);
 
-  const DropdownChange = (event) => {
-    setcountry(event.target.value);
+  const DropdownChange = (e) => {
+    setcountry(e.target.value);
   }
 
   return (
@@ -42,13 +43,19 @@ function App() {
       <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
         <h1>Covid-19 Tracker</h1>
         <FormControl className="country-dropdown">
-          <Select variant='outlined' defaultValue={country} onChange={DropdownChange()}>
+          <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
             <MenuItem value="WoW">WorldWide</MenuItem>
             {countries.map(country => (
               <MenuItem value={country.code}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
+      </div>
+      <div className="covid-options flexRow flexBetween flexAlignCenter mb-20">
+        <OptionBox title="Total Cases" freshCases={2879} totalCases={132456} />
+        <OptionBox title="Total Active Cases" freshCases={2689} totalCases={12345} />
+        <OptionBox title="Total Recovered Cases" freshCases={3788} totalCases={113678} />
+        <OptionBox title="Total Deaths" freshCases={200} totalCases={12345} />
       </div>
     </div>
   );
