@@ -33,12 +33,16 @@ function App() {
 
   }, []);
 
+  const DropdownChange = (event) => {
+    setcountry(event.target.value);
+  }
+
   return (
     <div className="App">
       <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
         <h1>Covid-19 Tracker</h1>
         <FormControl className="country-dropdown">
-          <Select variant='outlined' defaultValue={country} onChange={(e) => setcountry(e.target.value)}>
+          <Select variant='outlined' defaultValue={country} onChange={DropdownChange()}>
             <MenuItem value="WoW">WorldWide</MenuItem>
             {countries.map(country => (
               <MenuItem value={country.code}>{country.name}</MenuItem>
