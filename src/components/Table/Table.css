@@ -1,9 +1,12 @@
 .country-table{
-    overflow: auto;
+    overflow-y: scroll;
     height: 45vh;
     color: #6a5d5d;
     background-color: white;
 }
 tr:nth-of-type(odd){
     background-color: #f3f2f8;
+}
+td{
+    padding: 0.5rem;
 }

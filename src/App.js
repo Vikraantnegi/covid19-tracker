@@ -12,6 +12,12 @@ function App() {
   const [countryInfo, setcountryInfo] = useState([]);
   const [table, settable] = useState([]);
 
+  const sortData = (data) => {
+    const sortedData = [...data];
+    sortedData.sort((a,b) => (a.cases > b.cases ? -1 : 1))
+    return sortedData;
+  }
+
   useEffect(() => {
      fetch('https://disease.sh/v3/covid-19/all')
       .then(response => response.json())
@@ -31,7 +37,8 @@ function App() {
               name: country.country,
               code: country.countryInfo.iso3,
             }))
-            settable(data);
+            const sortedData = sortData(data);
+            settable(sortedData);
             setcountries(countries);
           })
         .catch(error => console.log(error));
