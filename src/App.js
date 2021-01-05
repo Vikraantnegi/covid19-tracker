@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import './styles/HelperStyles.css';
@@ -14,7 +15,7 @@ function App() {
   const [countryInfo, setcountryInfo] = useState([]);
   const [table, settable] = useState([]);  
   const [mapCenter, setMapCenter] = useState([ 34.80746, -40.4796 ]);
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(2);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
 
@@ -61,7 +62,11 @@ function App() {
     await fetch(api)
       .then(response => response.json())
         .then(data => {
-          setMapCenter([ data.countryInfo.lat, data.countryInfo.long ]);
+          {countryCode === 'WoW' ? (
+            setMapCenter([ 34.80746, -40.4796 ])
+          ) : (
+            setMapCenter([ data.countryInfo.lat, data.countryInfo.long ])
+          )}
           setMapZoom(3);
           setcountry(countryCode);
           setcountryInfo(data);
