@@ -6,6 +6,7 @@ import FeatureBox from './components/FeatureBox/FeatureBox';
 import Map from './components/Map/Map';
 import Table from './components/Table/Table';
 import Graph from './components/Graph/Graph';
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setcountries] = useState([]);
