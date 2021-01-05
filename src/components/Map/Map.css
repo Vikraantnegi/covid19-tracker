@@ -9,3 +9,19 @@
 .leaflet-container{
     height: 100%;
 }
+.country-flag{
+    height: 100px;
+    width: 100%;
+    background-size: cover;
+    border-radius: 8px;
+}
+.country-active, .country-recovered, .country-deaths{
+    font-size: 16px;
+    margin-top: 5px;
+}
+.country-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #555;
+}

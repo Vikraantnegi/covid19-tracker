@@ -2,6 +2,7 @@
 import React from "react";
 import { MapContainer, TileLayer, Circle, Popup, useMap } from "react-leaflet";
 import "./Map.css";
+import numeral from 'numeral';
 
 const casesTypeColors = {
     cases: {
@@ -30,7 +31,13 @@ const casesTypeColors = {
         }
       >
         <Popup>
-          Hi I am a Popup!
+          <div className="covidmap-popup">
+            <div className="country-flag" style={{backgroundImage: `url(${country.countryInfo.flag})`}}></div>
+            <div className="country-name">{country.country}</div>
+            <div className="country-active">Active: {numeral(country.active).format("0,0")}</div>
+            <div className="country-recovered">Recovered: {numeral(country.recovered).format("0,0")}</div>
+            <div className="country-deaths">Deaths: {numeral(country.deaths).format("0,0")}</div>
+          </div>
         </Popup>
       </Circle>
     ));
