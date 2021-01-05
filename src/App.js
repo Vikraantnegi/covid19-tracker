@@ -60,11 +60,11 @@ function App() {
         .then(data => {
           setcountry(countryCode);
           setcountryInfo(data);
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(3);
         })
       .catch(error => console.log(error));
   }
-
-  console.log(countryInfo);
 
   return (
     <div className="covid-app flexRow flexAround mw1100">
