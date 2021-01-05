@@ -13,6 +13,8 @@ function App() {
   const [country, setcountry] = useState('WoW');
   const [countryInfo, setcountryInfo] = useState([]);
   const [table, settable] = useState([]);
+  const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796});
+  const [mapZoom, setMapZoom] = useState(3);
 
   const sortData = (data) => {
     const sortedData = [...data];
@@ -91,7 +93,7 @@ function App() {
           <FeatureBox title="Total Covid Deaths" freshCases={countryInfo.todayDeaths} totalCases={countryInfo.deaths} />
         </div>
         <div className="covid-map">
-          <Map />
+          <Map center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
       <Card className="stats-right">
