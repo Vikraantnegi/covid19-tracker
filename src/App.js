@@ -12,9 +12,11 @@ function App() {
   const [countries, setcountries] = useState([]);
   const [country, setcountry] = useState('WoW');
   const [countryInfo, setcountryInfo] = useState([]);
-  const [table, settable] = useState([]);
-  const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796});
+  const [table, settable] = useState([]);  
+  const [mapCenter, setMapCenter] = useState([ 34.80746, -40.4796 ]);
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   const sortData = (data) => {
     const sortedData = [...data];
@@ -41,6 +43,7 @@ function App() {
               name: country.country,
               code: country.countryInfo.iso3,
             }))
+            setMapCountries(data);
             const sortedData = sortData(data);
             settable(sortedData);
             setcountries(countries);
@@ -58,10 +61,10 @@ function App() {
     await fetch(api)
       .then(response => response.json())
         .then(data => {
+          setMapCenter([ data.countryInfo.lat, data.countryInfo.long ]);
+          setMapZoom(3);
           setcountry(countryCode);
           setcountryInfo(data);
-          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(3);
         })
       .catch(error => console.log(error));
   }
@@ -93,7 +96,7 @@ function App() {
           <FeatureBox title="Total Covid Deaths" freshCases={countryInfo.todayDeaths} totalCases={countryInfo.deaths} />
         </div>
         <div className="covid-map">
-          <Map center={mapCenter} zoom={mapZoom} />
+          <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
       <Card className="stats-right">
