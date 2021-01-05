@@ -81,7 +81,7 @@ function Graph({casesType = 'cases'}) {
     }, [casesType]);
 
     return (
-        <div>
+        <div className="covid-graph">
             {data?.length > 0 && (                
                 <Line 
                     data ={{
