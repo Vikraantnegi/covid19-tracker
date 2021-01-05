@@ -8,6 +8,7 @@ import Map from './components/Map/Map';
 import Table from './components/Table/Table';
 import Graph from './components/Graph/Graph';
 import "leaflet/dist/leaflet.css";
+import numeral from 'numeral';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -24,6 +25,9 @@ function App() {
     sortedData.sort((a,b) => (a.cases > b.cases ? -1 : 1))
     return sortedData;
   }
+
+  const numberFormat = (data) => 
+    data ? `${numeral(data).format("0.0a")}` : "0";
 
   useEffect(() => {
      fetch('https://disease.sh/v3/covid-19/all')
@@ -77,7 +81,7 @@ function App() {
   return (
     <div className="covid-app flexRow flexAround mw1100">
       <div className="stats-left">
-        <div className="covid-header flexRow flexBetween flexAlignCenter mb-20">
+        <div className="covid-header flexRow flexBetween flexAlignCenter">
           <h1>Covid-19 Tracker</h1>
           <FormControl className="country-dropdown">
             <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
@@ -89,16 +93,31 @@ function App() {
           </FormControl>
         </div>
         <div className="covid-total flexRow flexEnd">
-          <h1 className="total-cases mr-20">{countryInfo.cases}</h1>
+          <h1 className="total-cases mr-20">{numberFormat(countryInfo.cases)}</h1>
           <div className="flexColumn flexAlignCenter flexCenter mr-20">
-            <h4 style={{margin:0}} className="critical-cases flexColumn flexCenter">{countryInfo.critical}</h4>
+            <h4 style={{margin:0}} className="critical-cases flexColumn flexCenter">{numberFormat(countryInfo.critical)}</h4>
             <h4 style={{margin:0}} className="critical">Critical</h4>
           </div>
         </div>
-        <div className="covid-stats flexRow flexBetween flexAlignCenter mb-20">
-          <FeatureBox title="Total Active Cases" freshCases={countryInfo.todayCases} totalCases={countryInfo.active} />
-          <FeatureBox title="Total Recovered Cases" freshCases={countryInfo.todayRecovered} totalCases={countryInfo.recovered} />
-          <FeatureBox title="Total Covid Deaths" freshCases={countryInfo.todayDeaths} totalCases={countryInfo.deaths} />
+        <div className="covid-stats flexRow flexBetween flexAlignCenter">
+          <FeatureBox 
+            onClick={(e) => setCasesType('cases')}
+            title="Total Active Cases" 
+            freshCases={numberFormat(countryInfo.todayCases)} 
+            totalCases={numberFormat(countryInfo.active)} 
+          />
+          <FeatureBox 
+            onClick={(e) => setCasesType('recovered')}
+            title="Total Recovered Cases" 
+            freshCases={numberFormat(countryInfo.todayRecovered)} 
+            totalCases={numberFormat(countryInfo.recovered)} 
+          />
+          <FeatureBox 
+            onClick={(e) => setCasesType('deaths')}
+            title="Total Covid Deaths" 
+            freshCases={numberFormat(countryInfo.todayDeaths)} 
+            totalCases={numberFormat(countryInfo.deaths)} 
+          />
         </div>
         <div className="covid-map">
           <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
