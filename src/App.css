@@ -13,3 +13,10 @@ body{
         flex-direction: row !important;
     }
 }
+.covid-header{
+    color: #fc3c3c;
+    font-size: 2rem;
+}
+.country-dropdown{
+    background-color: white;
+}

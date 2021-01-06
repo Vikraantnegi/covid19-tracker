@@ -29,6 +29,15 @@ function App() {
   const numberFormat = (data) => 
     data ? `${numeral(data).format("0.0a")}` : "0";
 
+    const titleCase = (str) => {
+      str = str.toLowerCase()
+                .split(' ')
+                .map(function(word) {
+          return (word.charAt(0).toUpperCase() + word.slice(1));
+      });
+     return str.join(' ');
+    }
+
   useEffect(() => {
      fetch('https://disease.sh/v3/covid-19/all')
       .then(response => response.json())
@@ -81,8 +90,8 @@ function App() {
   return (
     <div className="covid-app flexRow flexAround mw1100">
       <div className="stats-left">
-        <div className="covid-header flexRow flexBetween flexAlignCenter">
-          <h1>Covid-19 Tracker</h1>
+        <div className="flexRow flexBetween flexAlignCenter">
+          <h1 className="covid-header">Covid-19 Tracker</h1>
           <FormControl className="country-dropdown">
             <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
               <MenuItem value="WoW">WorldWide</MenuItem>
@@ -101,18 +110,24 @@ function App() {
         </div>
         <div className="covid-stats flexRow flexBetween flexAlignCenter">
           <FeatureBox 
+            sr='active'
+            active={casesType === 'cases'}
             onClick={(e) => setCasesType('cases')}
             title="Total Active Cases" 
             freshCases={numberFormat(countryInfo.todayCases)} 
             totalCases={numberFormat(countryInfo.active)} 
           />
           <FeatureBox 
+            sr='recovered'
+            active={casesType === 'recovered'}
             onClick={(e) => setCasesType('recovered')}
             title="Total Recovered Cases" 
             freshCases={numberFormat(countryInfo.todayRecovered)} 
             totalCases={numberFormat(countryInfo.recovered)} 
           />
-          <FeatureBox 
+          <FeatureBox
+            sr='deaths'
+            active={casesType === 'deaths'}
             onClick={(e) => setCasesType('deaths')}
             title="Total Covid Deaths" 
             freshCases={numberFormat(countryInfo.todayDeaths)} 
@@ -127,8 +142,8 @@ function App() {
         <CardContent className="flexColumn flexBetween">
           <h3 className="live-cases">Live Cases by Country</h3>
           <Table countries={table} />
-          <h3 className="fresh-cases">New Cases WorldWide</h3>
-          <Graph />
+          <h3 className="fresh-cases">WorldWide Latest {titleCase(casesType)} </h3>
+          <Graph casesType={casesType} />
         </CardContent>
       </Card>
     </div>
