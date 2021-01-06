@@ -5,13 +5,15 @@ import {Card, CardContent, Typography} from '@material-ui/core';
 
 const FeatureBox = (props) => {
     return(
-        <Card className="m-20">
+        <Card
+         onClick={props.onClick}
+         className={`featurebox ${props.active && `featurebox-${props.sr}`}`}>
             <CardContent>
                 <Typography className="feature-title" color="textSecondary">
                     {props.title}
                 </Typography>
 
-                <Typography className="feature-totalCases" color="textSecondary">
+                <Typography className={`feature-totalCases ${props.sr === 'recovered' && 'recovered-text'}`} color="textSecondary">
                     {props.totalCases}
                 </Typography>
 

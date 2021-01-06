@@ -1,0 +1,35 @@
+.featurebox{
+    flex: 1;
+    cursor: pointer;
+}
+.featurebox:not(:last-child){
+    margin-right: 15px;
+}
+.feature-title{
+
+}
+.feature-totalCases{
+    color: #cc1034 !important;
+    font-weight: 600 !important;
+    font-size: 1.75rem !important;
+    margin-bottom: 0.5rem !important;
+}
+.feature-freshCases{
+    color: #6c757d !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 0px !important;
+    text-align: right !important;
+}
+.featurebox-active{
+    border-bottom: 10px solid #CC1034;
+}
+.featurebox-recovered{
+    border-bottom: 10px solid #7dd71d;
+}
+.recovered-text{
+    color: #7dd71d !important;
+}
+.featurebox-deaths{    
+    border-bottom: 10px solid #fb4443;
+}
