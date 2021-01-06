@@ -43,7 +43,7 @@ const options = {
         {
           type: "time",
           time: {
-            format: "MM/DD/YY",
+            unit: 'month',
             tooltipFormat: "ll",
           },
         },
@@ -79,21 +79,30 @@ const buildChart = (data, casesType='cases') => {
     return chartData;
 }
 
-function Graph({casesType}) {
-    const [data, setData] = useState([]);    
-
+function Graph({casesType, countryCode}) {
+    const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=60')
+          if(countryCode === 'WoW' || countryCode === 'Wow') { 
+            await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=90')
                 .then(resp => resp.json())
                     .then(data => {
                         const chartData = buildChart(data, casesType);
                         setData(chartData);
                     })
                 .catch(err => console.log(err));
+          } else {
+            await fetch(`https://disease.sh/v3/covid-19/historical/${countryCode}?lastdays=90`)
+                .then(resp => resp.json())
+                    .then(data => {
+                        const chartData = buildChart(data.timeline, casesType);
+                        setData(chartData);
+                    })
+                .catch(err => console.log(err));
+          }
         };
         fetchData();
-    }, [casesType]);
+    }, [casesType, countryCode]);
 
     return (
         <div className="covid-graph">
@@ -108,6 +117,7 @@ function Graph({casesType}) {
                         ],
                     }} 
                     options = {options} 
+                    redraw = {true}
                 />
             )}
         </div>
