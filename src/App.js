@@ -9,6 +9,7 @@ import Table from './components/Table/Table';
 import Graph from './components/Graph/Graph';
 import "leaflet/dist/leaflet.css";
 import numeral from 'numeral';
+import {DropdownButton, Dropdown} from 'react-bootstrap';
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -88,64 +89,66 @@ function App() {
   }
 
   return (
-    <div className="covid-app flexRow flexAround mw1100">
-      <div className="stats-left">
-        <div className="flexRow flexBetween flexAlignCenter">
-          <h1 className="covid-header">Covid-19 Tracker</h1>
-          <FormControl className="country-dropdown">
-            <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
-              <MenuItem value="WoW">WorldWide</MenuItem>
-              {countries.map(country => (
-                <MenuItem key={country.code} value={country.code}>{country.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-        <div className="covid-total flexRow flexEnd">
-          <h1 className="total-cases mr-20">{numberFormat(countryInfo.cases)}</h1>
-          <div className="flexColumn flexAlignCenter flexCenter mr-20">
-            <h4 style={{margin:0}} className="critical-cases flexColumn flexCenter">{numberFormat(countryInfo.critical)}</h4>
-            <h4 style={{margin:0}} className="critical">Critical</h4>
+    <div className="flexColumn flexAround mw1100">
+      <div className="flexRow flexBetween flexAlignCenter mh-20">
+        <h1 className="covid-header">Covid-19 Tracker</h1>
+        <FormControl className="country-dropdown">
+          <Select variant='outlined' defaultValue={country} onChange={(e) => DropdownChange(e)}>
+            <MenuItem value="WoW">WorldWide</MenuItem>
+            {countries.map(country => (
+              <MenuItem key={country.code} value={country.code}>{country.name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+      <div className="covid-app flexRow flexAround">
+        <div className="stats-left">
+          <div className="covid-total flexRow flexEnd">
+            <h1 className="total-cases mr-20">{numberFormat(countryInfo.cases)}</h1>
+            <div className="flexColumn flexAlignCenter flexCenter mr-20">
+              <h4 style={{margin:0}} className="critical-cases flexColumn flexCenter">{numberFormat(countryInfo.critical)}</h4>
+              <h4 style={{margin:0}} className="critical">Critical</h4>
+            </div>
+          </div>
+          <div className="covid-stats flexRow flexBetween flexAlignCenter">
+            <FeatureBox 
+              sr='active'
+              active={casesType === 'cases'}
+              onClick={(e) => setCasesType('cases')}
+              title="Total Active Cases" 
+              freshCases={numberFormat(countryInfo.todayCases)} 
+              totalCases={numberFormat(countryInfo.active)} 
+            />
+            <FeatureBox 
+              sr='recovered'
+              active={casesType === 'recovered'}
+              onClick={(e) => setCasesType('recovered')}
+              title="Total Recovered Cases" 
+              freshCases={numberFormat(countryInfo.todayRecovered)} 
+              totalCases={numberFormat(countryInfo.recovered)} 
+            />
+            <FeatureBox
+              sr='deaths'
+              active={casesType === 'deaths'}
+              onClick={(e) => setCasesType('deaths')}
+              title="Total Covid Deaths" 
+              freshCases={numberFormat(countryInfo.todayDeaths)} 
+              totalCases={numberFormat(countryInfo.deaths)} 
+            />
+          </div>
+          <div className="covid-map">
+            <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
           </div>
         </div>
-        <div className="covid-stats flexRow flexBetween flexAlignCenter">
-          <FeatureBox 
-            sr='active'
-            active={casesType === 'cases'}
-            onClick={(e) => setCasesType('cases')}
-            title="Total Active Cases" 
-            freshCases={numberFormat(countryInfo.todayCases)} 
-            totalCases={numberFormat(countryInfo.active)} 
-          />
-          <FeatureBox 
-            sr='recovered'
-            active={casesType === 'recovered'}
-            onClick={(e) => setCasesType('recovered')}
-            title="Total Recovered Cases" 
-            freshCases={numberFormat(countryInfo.todayRecovered)} 
-            totalCases={numberFormat(countryInfo.recovered)} 
-          />
-          <FeatureBox
-            sr='deaths'
-            active={casesType === 'deaths'}
-            onClick={(e) => setCasesType('deaths')}
-            title="Total Covid Deaths" 
-            freshCases={numberFormat(countryInfo.todayDeaths)} 
-            totalCases={numberFormat(countryInfo.deaths)} 
-          />
-        </div>
-        <div className="covid-map">
-          <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
-        </div>
+        <Card className="stats-right">
+          <CardContent className="flexColumn flexBetween">
+            <h3 className="live-cases">Live Cases by Country</h3>
+            <Table countries={table} />
+            <h3 className="fresh-cases">WorldWide Latest {titleCase(casesType)} </h3>
+            <Graph casesType={casesType} />
+          </CardContent>
+        </Card>
       </div>
-      <Card className="stats-right">
-        <CardContent className="flexColumn flexBetween">
-          <h3 className="live-cases">Live Cases by Country</h3>
-          <Table countries={table} />
-          <h3 className="fresh-cases">WorldWide Latest {titleCase(casesType)} </h3>
-          <Graph casesType={casesType} />
-        </CardContent>
-      </Card>
     </div>
   );
 }
