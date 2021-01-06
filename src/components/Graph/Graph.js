@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {FormControl, MenuItem, Select} from '@material-ui/core';
 import './Graph.css';
 import '../../styles/HelperStyles.css';
 import {Line} from 'react-chartjs-2';
@@ -79,8 +80,10 @@ const buildChart = (data, casesType='cases') => {
     return chartData;
 }
 
-function Graph({casesType, countryCode}) {
+function Graph({countryCode}) {
     const [data, setData] = useState([]);
+    const [casesType, setcaseType] = useState('cases');
+
     useEffect(() => {
         const fetchData = async () => {
           if(countryCode === 'WoW' || countryCode === 'Wow') { 
@@ -105,6 +108,17 @@ function Graph({casesType, countryCode}) {
     }, [casesType, countryCode]);
 
     return (
+      <>
+        <div className="trends-head flexRow flexBetween flexAlignCenter mh-10">
+          <h3 className="fresh-cases" style={{fontWeight: 600}}>Trends</h3>
+          <FormControl className="trends-dropdown">
+              <Select variant='outlined' defaultValue={casesType} onChange={(e) => setcaseType(e.target.value)}>
+                  <MenuItem value='cases'><strong>Total Cases</strong></MenuItem>
+                  <MenuItem value='recovered'><strong>Recovered</strong></MenuItem>
+                  <MenuItem value='deaths'><strong>Total Deaths</strong></MenuItem>
+              </Select>
+          </FormControl>
+        </div>
         <div className="covid-graph">
             {data?.length > 0 && (                
                 <Line 
@@ -121,6 +135,7 @@ function Graph({casesType, countryCode}) {
                 />
             )}
         </div>
+      </>
     )
 }
 
