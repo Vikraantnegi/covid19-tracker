@@ -1,4 +1,19 @@
 .covid-graph{
-    margin: auto;
+    margin: 0.75rem auto;
     flex-grow: 1;
+}
+.trends-covid .MuiInputBase-root{    
+    font-family: 'Poppins', sans-serif !important;
+}
+.trends-covid .MuiSelect-outlined.MuiSelect-outlined{
+    padding-right: 1.5rem !important;
+}
+.trends-covid .MuiOutlinedInput-input {
+    padding: 0.5rem 0.75rem !important;
+}
+.trends-covid .MuiSelect-icon {
+    color: #6a5d5d !important;
+}
+.trends-covid .MuiSelect-iconOutlined {
+    right: 2px !important;
 }
