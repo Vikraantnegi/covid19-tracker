@@ -6,16 +6,16 @@ import numeral from 'numeral';
 
 const casesTypeColors = {
   cases: {
-    hex: "#CC1034",
-    rgb: "rgb(204, 16, 52, 0.5)",
+    hex: "#DE3700",
+    rgb: "rgba(	222, 55, 0, 0.5)",
   },
   recovered: {
-    hex: "#7dd71d",
-    rgb: "rgb(125, 215, 29,0.5)",
+    hex: "#60bb69",
+    rgb: "rgba(	96, 187, 105, 0.5)",
   },
   deaths: {
-    hex: "#fb4443",
-    rgb: "rgb(251, 68, 67,0.5)",
+    hex: "#767676",
+    rgb: "rgba(	118, 118, 118, 0.5)",
   },
 };
 
