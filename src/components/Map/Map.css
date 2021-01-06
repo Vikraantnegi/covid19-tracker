@@ -1,13 +1,12 @@
 .map{
-    height: 50vh;
+    height: 75vh;
     background-color: white;
-    padding: 1rem;
     border-radius: 20px;
     box-shadow: 0 0 8px -4px rgba(0,0,0,0.5);
-    margin-top: 16px;
 }
 .leaflet-container{
     height: 100%;
+    border-radius: 20px;
 }
 .country-flag{
     height: 100px;
@@ -16,11 +15,11 @@
     border-radius: 8px;
 }
 .country-active, .country-recovered, .country-deaths{
-    font-size: 16px;
+    font-size: 1rem;
     margin-top: 5px;
 }
 .country-name{
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-top: 5px;
     color: #555;

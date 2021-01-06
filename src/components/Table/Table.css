@@ -30,11 +30,11 @@ td{
     background-color: inherit !important;
 }
 .country-table .MuiSelect-iconOutlined {
-    right: 5px !important;
+    right: 2px !important;
 }
 .country-table .MuiOutlinedInput-input {
     padding: 0.5rem !important;
 }
-.MuiSelect-icon {
+.country-table .MuiSelect-icon {
     color: #6a5d5d !important;
 }
