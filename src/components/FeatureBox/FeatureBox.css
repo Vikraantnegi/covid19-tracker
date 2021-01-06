@@ -1,35 +1,22 @@
-.featurebox{
-    flex: 1;
-    cursor: pointer;
+.circle-covid{
+    height: 8px;
+    width: 8px;
+    border-radius: 4px;
+    margin-right: 0.5rem;
 }
-.featurebox:not(:last-child){
-    margin-right: 15px;
+.case-type{
+    margin: 0;
+    color: #333333;
 }
-.feature-title{
-
+.number-cases{
+    margin: 0;
+    color: #767676;
+    margin-left: auto;
 }
-.feature-totalCases{
-    color: #cc1034 !important;
-    font-weight: 600 !important;
-    font-size: 1.75rem !important;
-    margin-bottom: 0.5rem !important;
+.w100{
+    width: 100% !important;
 }
-.feature-freshCases{
-    color: #6c757d !important;
-    font-weight: 700 !important;
-    font-size: 0.8rem !important;
-    margin-bottom: 0px !important;
-    text-align: right !important;
-}
-.featurebox-active{
-    border-bottom: 10px solid #CC1034;
-}
-.featurebox-recovered{
-    border-bottom: 10px solid #7dd71d;
-}
-.recovered-text{
-    color: #7dd71d !important;
-}
-.featurebox-deaths{    
-    border-bottom: 10px solid #fb4443;
+.fresh-cases{
+    margin-left: 10px;
+    font-size: 0.65rem;
 }

@@ -1,27 +1,19 @@
 import React from 'react';
 import './FeatureBox.css';
 import '../../styles/HelperStyles.css';
-import {Card, CardContent, Typography} from '@material-ui/core';
 
 const FeatureBox = (props) => {
     return(
-        <Card
-         onClick={props.onClick}
-         className={`featurebox ${props.active && `featurebox-${props.sr}`}`}>
-            <CardContent>
-                <Typography className="feature-title" color="textSecondary">
-                    {props.title}
-                </Typography>
-
-                <Typography className={`feature-totalCases ${props.sr === 'recovered' && 'recovered-text'}`} color="textSecondary">
-                    {props.totalCases}
-                </Typography>
-
-                <h2 className="feature-freshCases">
-                    + {props.freshCases} cases
-                </h2>
-            </CardContent>
-        </Card>
+        <div className="flexColumn w100" style={{marginBottom: 10}}>
+            <div className="flexRow flexAlignCenter" style={{marginBottom: 5}}> 
+                <div className="circle-covid" style={{backgroundColor: `${props.color}`}}></div>                           
+                <h4 className="case-type">{props.casetype}</h4>
+                <h4 className="number-cases flexRow flexAlignCenter">
+                    {props.totalCases} 
+                    {props.freshCases !== '' ? (<span className="fresh-cases">+{props.freshCases}</span>) : null}
+                </h4>
+            </div>
+        </div>
     );
 }
 
