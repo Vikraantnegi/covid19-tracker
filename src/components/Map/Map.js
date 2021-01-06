@@ -22,9 +22,28 @@ const casesTypeColors = {
     },
   };
 
-  // const showMapData = (data, casesType = "cases") =>
-    
-  //   ));
+  const showMapData = (data, casesType = "cases") =>
+    data.map((country) => (
+      <Circle
+        center={[country.countryInfo.lat, country.countryInfo.long]}
+        color={casesTypeColors[casesType].hex}
+        fillColor={casesTypeColors[casesType].rgb}
+        fillOpacity={0.4}
+        radius={
+          Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
+        }
+      >
+        <Popup>
+          <div className="covidmap-popup">
+            <div className="country-flag" style={{backgroundImage: `url(${country.countryInfo.flag})`}}></div>
+            <div className="country-name">{country.country}</div>
+            <div className="country-active">Active: {numeral(country.active).format("0,0")}</div>
+            <div className="country-recovered">Recovered: {numeral(country.recovered).format("0,0")}</div>
+            <div className="country-deaths">Deaths: {numeral(country.deaths).format("0,0")}</div>
+          </div>
+        </Popup>
+      </Circle>
+    ));
 
   const ChangeView = ({ center, zoom }) => {
     const map = useMap();
@@ -41,29 +60,7 @@ const casesTypeColors = {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {
-                  countries.map((country) => (
-                    <Circle
-                      center={[country.countryInfo.lat, country.countryInfo.long]}
-                      color={casesTypeColors[casesType].hex}
-                      fillColor={casesTypeColors[casesType].rgb}
-                      fillOpacity={0.4}
-                      radius={
-                        Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
-                      }
-                    >
-                      <Popup>
-                        <div className="covidmap-popup">
-                          <div className="country-flag" style={{backgroundImage: `url(${country.countryInfo.flag})`}}></div>
-                          <div className="country-name">{country.country}</div>
-                          <div className="country-active">Active: {numeral(country.active).format("0,0")}</div>
-                          <div className="country-recovered">Recovered: {numeral(country.recovered).format("0,0")}</div>
-                          <div className="country-deaths">Deaths: {numeral(country.deaths).format("0,0")}</div>
-                        </div>
-                      </Popup>
-                    </Circle>
-                  ))
-                }
+                {showMapData(countries, casesType)}
             </MapContainer>
         </div>
     );
