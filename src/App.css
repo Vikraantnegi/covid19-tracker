@@ -13,6 +13,10 @@ body{
         flex-direction: row !important;
     }
 }
+.stats-right{    
+    border-radius: 20px !important;
+    height: 75vh;
+}
 .covid-header{
     font-size: 3rem;
 }
@@ -45,9 +49,6 @@ body{
 .country-dropdown input:focus{
     outline: none !important;
 }
-.MuiSelect-iconOutlined {
-    right: 10px !important;
-}
 .MuiSelect-icon {
     color: black !important;
 }
@@ -57,4 +58,16 @@ fieldset:focus{
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: black !important;
     border-width: 1px !important;
+}
+.covid-stats{
+    margin: 1.5rem 1.25rem;
+}
+.trends-covid{
+    box-shadow: 0 0 8px -4px rgba(0,0,0,0.5);
+    background-color: white;
+    padding: 1rem 1.5rem !important;
+    border-radius: 20px;
+}
+.stats-right{
+    box-shadow: 0 0 8px -4px rgba(0,0,0,0.5) !important;
 }
