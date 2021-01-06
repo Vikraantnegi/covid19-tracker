@@ -12,3 +12,29 @@ tr:nth-of-type(odd){
 td{
     padding: 0.5rem;
 }
+.country-table .MuiOutlinedInput-root{
+    border-radius: 4px !important;
+}
+.country-table .MuiInputBase-root{    
+    font-family: 'Poppins', sans-serif !important;
+    color: #6a5d5d;
+}
+.country-table .MuiSelect-outlined.MuiSelect-outlined{
+    padding-right: 1.5rem !important;
+}
+.country-table .MuiSelect-outlined {
+    border-radius: 4px !important;
+}
+.country-table .MuiSelect-select:focus {
+    border-radius: 4px !important;
+    background-color: inherit !important;
+}
+.country-table .MuiSelect-iconOutlined {
+    right: 5px !important;
+}
+.country-table .MuiOutlinedInput-input {
+    padding: 0.5rem !important;
+}
+.MuiSelect-icon {
+    color: #6a5d5d !important;
+}
