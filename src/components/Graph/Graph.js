@@ -4,6 +4,21 @@ import '../../styles/HelperStyles.css';
 import {Line} from 'react-chartjs-2';
 import numeral from 'numeral';
 
+const casesTypeColors = {
+  cases: {
+    hex: "#CC1034",
+    rgb: "rgb(204, 16, 52, 0.5)",
+  },
+  recovered: {
+    hex: "#7dd71d",
+    rgb: "rgb(125, 215, 29,0.5)",
+  },
+  deaths: {
+    hex: "#fb4443",
+    rgb: "rgb(251, 68, 67,0.5)",
+  },
+};
+
 const options = {
     legend: {
       display: false,
@@ -55,7 +70,7 @@ const buildChart = (data, casesType='cases') => {
         if(lastCoordinate){
             const newCoordinate = {
                 x : date,
-                y : data[casesType][date] - lastCoordinate
+                y : data[casesType][date] - lastCoordinate > 0 ? data[casesType][date] - lastCoordinate : 0
             }
             chartData.push(newCoordinate);
         }
@@ -64,7 +79,7 @@ const buildChart = (data, casesType='cases') => {
     return chartData;
 }
 
-function Graph({casesType = 'cases'}) {
+function Graph({casesType}) {
     const [data, setData] = useState([]);    
 
     useEffect(() => {
@@ -72,7 +87,7 @@ function Graph({casesType = 'cases'}) {
             await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=60')
                 .then(resp => resp.json())
                     .then(data => {
-                        const chartData = buildChart(data, 'cases');
+                        const chartData = buildChart(data, casesType);
                         setData(chartData);
                     })
                 .catch(err => console.log(err));
@@ -86,8 +101,8 @@ function Graph({casesType = 'cases'}) {
                 <Line 
                     data ={{
                         datasets: [{
-                                backgroundColor: 'rgba(204, 16, 52, 0.8)',
-                                borderColor: '#CC1034',
+                                backgroundColor: casesTypeColors[casesType].hex,
+                                borderColor: casesTypeColors[casesType].rgb,
                                 data: data,
                             },
                         ],
