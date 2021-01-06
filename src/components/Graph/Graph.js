@@ -110,7 +110,7 @@ function Graph({countryCode}) {
     return (
       <>
         <div className="trends-head flexRow flexBetween flexAlignCenter mh-10">
-          <h3 className="fresh-cases" style={{fontWeight: 600}}>Trends</h3>
+          <h3>Trends</h3>
           <FormControl className="trends-dropdown">
               <Select variant='outlined' defaultValue={casesType} onChange={(e) => setcaseType(e.target.value)}>
                   <MenuItem value='cases'><strong>Total Cases</strong></MenuItem>
