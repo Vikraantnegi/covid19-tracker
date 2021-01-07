@@ -1,12 +1,11 @@
 .covid-graph{
     margin: 0.25rem auto;
-    flex-grow: 1;
 }
 .trends-covid .MuiInputBase-root{    
     font-family: 'Poppins', sans-serif !important;
 }
 .trends-covid .MuiSelect-outlined.MuiSelect-outlined{
-    padding-right: 1.5rem !important;
+    padding-right: 0.4rem !important;
 }
 .trends-covid .MuiOutlinedInput-input {
     padding: 0.5rem 0.75rem !important;

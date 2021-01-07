@@ -20,7 +20,7 @@ td{
     color: #6a5d5d;
 }
 .country-table .MuiSelect-outlined.MuiSelect-outlined{
-    padding-right: 1.5rem !important;
+    padding-right: 0.25rem !important;
 }
 .country-table .MuiSelect-outlined {
     border-radius: 4px !important;
@@ -37,4 +37,7 @@ td{
 }
 .country-table .MuiSelect-icon {
     color: #6a5d5d !important;
+}
+.mm20{
+    margin-right: 1.5rem;
 }

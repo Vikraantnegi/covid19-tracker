@@ -139,4 +139,4 @@ function Graph({countryCode}) {
     )
 }
 
-export default Graph
+export default Graph;

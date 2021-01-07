@@ -13,7 +13,7 @@ function Table(props) {
         <div className="country-table">
             <tr className="flexRow flexBetween flexAlignCenter">
                 <td>Country Name</td>
-                <td className='mr-20'>
+                <td className='mm20'>
                     <FormControl className="table-dropdown">
                         <Select variant='outlined' defaultValue={caseType} onChange={(e) => setcaseType(e.target.value)}>
                             <MenuItem value='total'><strong style={{color: '#6a5d5d'}}>Total Cases</strong></MenuItem>
@@ -27,7 +27,7 @@ function Table(props) {
             {props.countries.map(country => (
                 <tr className="flexRow flexBetween">
                     <td style={{width: '60%', flexWrap: 'wrap'}}>{country.country}</td>
-                    <td className='mr-20'><strong>{
+                    <td className='mm20'><strong>{
                         caseType === 'deaths' ? numberFormat(country.deaths) :
                             caseType === 'active' ? numberFormat(country.active) :
                                 caseType === 'recovered' ? numberFormat(country.recovered) :
