@@ -28,15 +28,6 @@ function App() {
   const numberFormat = (data) => 
     data ? `${numeral(data).format("0,0")}` : "0";
 
-    const titleCase = (str) => {
-      str = str.toLowerCase()
-                .split(' ')
-                .map(function(word) {
-          return (word.charAt(0).toUpperCase() + word.slice(1));
-      });
-     return str.join(' ');
-    }
-
   useEffect(() => {
      fetch('https://disease.sh/v3/covid-19/all')
       .then(response => response.json())
@@ -100,7 +91,7 @@ function App() {
         </FormControl>
       </div>
       <div className="covid-stats flexRow flexAlignCenter">
-        <div className="total-covid grow flexColumn">
+        <div className="w680 total-covid grow flexColumn">
           <h3 style={{marginTop: 20, marginBottom: 0}}>Total Confirmed Covid Cases</h3>
           <h1 className="total-cases">{numberFormat(countryInfo.cases)}</h1>
           <div className="flexColumn flexAlignCenter">
@@ -115,7 +106,7 @@ function App() {
             />
           </div>
         </div> 
-        <div className="overview-covid grow flexColumn">
+        <div className="w680 overview-covid grow flexColumn">
           <h3 style={{marginTop: 20, marginBottom: 20}}>Overview</h3>
           <div className="flexColumn flexAlignCenter">
             <FeatureBox 

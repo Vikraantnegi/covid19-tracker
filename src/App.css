@@ -4,18 +4,79 @@ body{
 }
 .stats-left{
     flex: 0.9;
+    margin-bottom: 30px;
 }
-@media (max-width: 768px) {
+@media (max-width: 990px){
+    .MuiInputBase-root{
+        font-size: 14px !important;
+    }
+    .country-table .MuiInputBase-root{
+        font-size: 12px !important;
+    }
+}
+@media (max-width: 768px){
+    html{
+        font-size: 1.4vw !important;
+    }
+    .number-cases{
+        flex-direction: column !important;
+    }
+    .MuiInputBase-root{
+        font-size: 12px !important;
+    }
+    .country-table .MuiInputBase-root{
+        font-size: 9px !important;
+    }
+}
+@media (max-width: 700px){
+    html{
+        font-size: 1.6vw !important;
+    }
+    .w680{
+        width: 42% !important;
+        margin-bottom: 16px !important;
+    }
+    .number-cases{
+        flex-direction: row !important;
+    }
+    .covid-stats{
+        flex-wrap: wrap !important;
+    }
+}
+@media (max-width: 600px) {
     .covid-app{
         flex-direction: column !important;
     }
-    .covid-stats{
+}
+@media (max-width: 516px){
+    html{
+        font-size: 2vw !important;
+    }
+    .w680{
+        width: 100% !important;
+        margin-bottom: 16px !important;
+    }
+    .number-cases{
         flex-direction: row !important;
     }
+    .covid-stats{
+        flex-direction: column !important;
+        margin-right: 40px !important;
+    }
 }
-.stats-right{    
-    border-radius: 20px !important;
-    height: 75vh;
+@media(max-width: 400px){
+    html{
+        font-size: 3vw !important;
+    }
+    .trends-covid{
+        margin-left: -10px !important;
+    }
+    .stats-left, .stats-right{
+        margin: 0 10px 40px 15px !important;
+    }
+    .covid-header{
+        font-size: 20px !important;
+    }
 }
 .covid-header{
     font-size: 3rem;
@@ -27,14 +88,16 @@ body{
 .MuiOutlinedInput-root{
     border-radius: 8px !important;
 }
-.MuiInputBase-root{    
+.MuiInputBase-root{
+    display: flex !important;
+    align-items: center !important;    
     font-family: 'Poppins', sans-serif !important;
 }
 .MuiInputBase-root:focus{
     outline: none !important;
 }
 .MuiSelect-outlined.MuiSelect-outlined{
-    padding-right: 2rem !important;
+    padding-right: 0.75rem !important;
 }
 .MuiSelect-outlined {
     border-radius: 8px !important;
@@ -48,6 +111,7 @@ body{
 }
 .MuiSelect-icon {
     color: black !important;
+    position: relative !important;
 }
 fieldset:focus{
     outline: none !important;
@@ -71,7 +135,10 @@ fieldset:focus{
     width: 100%;
 }
 .stats-right{
+    border-radius: 20px !important;
+    height: 75vh;
     box-shadow: 0 0 8px -4px rgba(0,0,0,0.5) !important;
+    margin-bottom: 30px;
 }
 .total-cases{
     margin: 15px 0;
